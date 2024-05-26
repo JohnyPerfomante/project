@@ -1,0 +1,178 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.header {
+  background-color: #0a0a0a;
+  border-bottom: 1px solid #4f4f50;
+}
+
+.container {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.page-title {
+  padding-top: 20px;
+  color: #fff;
+  margin: 0;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.content-row {
+  background-color: #0a0a0a;
+  position: relative;
+}
+
+.vitalya {
+  margin-top: 35px;
+  font-style: italic;
+  font-weight: 700;
+  color: #fff;
+}
+
+.align-left {
+  margin-top: 10px;
+  float: left;
+  margin-right: 20px;
+}
+
+.question-one {
+  color: #fff;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+
+.answer-one {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 10px;
+  line-height: 1.4;
+}
+
+.line-one {
+  border-top: 1px solid #ccc;
+  margin-top: 50px;
+}
+
+.question-two {
+  color: #fff;
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.answer-two {
+  color: #fff;
+  margin-top: 20px;
+  margin-right: 10px;
+  line-height: 1.4;
+}
+
+.line-two {
+  border-top: 1px solid #ccc;
+  margin-top: 90px;
+}
+
+.align-right {
+  width: 300px;
+  margin-top: -130px;
+  float: right;
+  margin-right: 100px;
+}
+
+.align-left-two {
+  margin-top: 50px;
+  float: left;
+  margin-right: 20px;
+}
+
+.question-three {
+  color: #fff;
+  margin-top: 80px;
+  margin-left: 10px;
+}
+
+.answer-three {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 10px;
+  line-height: 1.4;
+}
+
+.line-three {
+  border-top: 1px solid #ccc;
+  margin-top: 70px;
+}
+
+.question-four {
+  color: #fff;
+  margin-top: 60px;
+  margin-left: 10px;
+}
+
+.answer-four {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+  line-height: 1.4;
+}
+
+.question-five {
+  color: #fff;
+  margin-top: 110px;
+  margin-left: 670px;
+}
+
+.answer-five {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 670px;
+  line-height: 1.4;
+}
+
+.line-four {
+  border-top: 1px solid #ccc;
+  margin-top: 50px;
+}
+
+.question-six {
+  color: #fff;
+  margin-top: 60px;
+  margin-left: 10px;
+}
+
+.answer-six {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+  line-height: 1.4;
+}
+
+.question-seven {
+  color: #fff;
+  margin-top: 110px;
+  margin-left: 670px;
+}
+
+.answer-seven {
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 670px;
+  margin-bottom: 60px;
+  line-height: 1.4;
+}

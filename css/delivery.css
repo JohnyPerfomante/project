@@ -1,0 +1,91 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #181717;
+  color: #fff;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.delivery-page {
+  padding: 20px;
+}
+
+.delivery-header {
+  margin-bottom: 20px;
+}
+
+.delivery-header h1 {
+  font-size: 50px;
+  color: #fff;
+}
+
+.delivery-header p {
+  margin-top: 30px;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.delivery-info p {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.delivery-prices {
+  margin-top: 30px;
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1em;
+}
+
+.delivery-prices li {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.color-box {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.green {
+  background-color: #00ff00;
+}
+
+.orange {
+  background-color: #ffa500;
+}
+
+.blue {
+  background-color: #0000ff;
+}
+
+.pink {
+  background-color: #ff00ff;
+}
+
+.grey {
+  background-color: #808080;
+}
+
+.delivery-map {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.delivery-map iframe {
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  border-radius: 10px;
+  border: none;
+}
