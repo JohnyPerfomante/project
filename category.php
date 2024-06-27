@@ -7,14 +7,7 @@
                     <img src="/Диплом/images/catalog-banner.png" alt="catalog-banner">
                 </div>
             </div>
-            <!-- <div class="row-1">
-                <div class="title-row">
-                    <h2>Роли <img class="img-rolls-title" src="/Диплом/images/title-rolls.png" alt="rolls"><span
-                            class="custom-number">01</span><img class="img-rolls-title"
-                            src="/Диплом/images/title-rolls.png" alt="rolls">
-                    </h2>
-                </div>
-            </div> -->
+
             <?php
                 // Підключення до бази даних
                 $servername = "localhost";
@@ -74,29 +67,27 @@
 
                 // Виведення кнопок з фільтрами
                 if ($result->num_rows > 0) {
-                    // Початок контейнера для кнопок
+                
                     echo '<div class="button-container">';
                     
                     // Виведення кнопок для кожного запису з бази даних
                     while($row = $result->fetch_assoc()) {
-                        // Якщо лічильник досягає 0, виводимо відкриття нового ряду
+                        // Якщо лічильник досягає 0, відкривається новий ряд
                         if ($count % 8 == 0) {
                             echo '<div class="button-row">';
                         }
                         
-                        // Виведення кнопки
                         echo '<button id="' . htmlspecialchars($row["name_filter"]) . '" class="button-design ';
                         echo '">' . htmlspecialchars($row["name_filter"]) . '</button>';
                         
-                        // Якщо лічильник досягає 7, виводимо закриття ряду
+                        // Якщо лічильник досягає 7, закривається ряд
                         if ($count % 8 == 7) {
-                            echo '</div>'; // Закриття ряду кнопок
+                            echo '</div>';
                         }
                         
-                        $count++; // Збільшення лічильника
+                        $count++;
                     }
                     
-                    // Закриття контейнера для кнопок
                     echo '</div>';
                 } else {
                     // echo "Не знайдено жодного фільтру";
@@ -106,7 +97,7 @@
 
             <div class="wrapper-rolls">
         <?php
-            // Конфігурація для підключення до бази даних
+
             $servername = "localhost";
             $username = "root";
             $password = "root";
@@ -147,9 +138,8 @@
                 $counter = 0;
                 // Виведення даних кожного продукту
                 while($row = $result->fetch_assoc()) {
-                    // Виведення HTML-коду для кожного продукту
                     if ($counter % 3 == 0) {
-                        echo '<div class="row-rolls">'; // Відкриваємо новий рядок кожні три об'єкти
+                        echo '<div class="row-rolls">';
                     }
                     echo '<div class="wrapper">';
                     echo '<a class="link-product-box" data-product-id="' . $row["product_id"] . '">';
@@ -173,20 +163,19 @@
                         }
                     }
 
-                    // Виведення назв інгредієнтів, розділених комами
                     echo implode(", ", $ingredient_names);
 
                     echo '</p>';
+                    echo '</a>';
                     echo '<div class="wrapper">';
-                    echo '<button class="product-box-btn">Купити</button>';
+                    echo '<a class="product-box-btn" data-product-id="' . $row["product_id"] . '" data-product-title="' . $row["title"] . '" data-product-img="' . $row["img_path"] . '" data-product-price="' . intval($row["price"]) . '">Купити</a>';
                     echo '<p class="product-box-price"><span class="product-box-price-big">' . intval($row["price"]) . '</span><span class="currency">грн</span></p>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                    echo '</a>';
                     echo '</div>';
                     if (($counter + 1) % 3 == 0 || ($counter + 1) == $result->num_rows) {
-                        echo '</div>'; // Закриваємо рядок після кожних трьох об'єктів або в кінці
+                        echo '</div>';
                     }
                     $counter++;
                 }
@@ -194,50 +183,14 @@
                 echo "0 results";
             }
 
-            // Закриття з'єднання з базою даних
             $conn->close();
         ?>
-
-                <!-- <a class="link-product-box" href="/Диплом/products.php">
-                    <div class="product-box-rolls">
-                            <img class="img-product-box" src="/Диплом/images/rolls-photo/vip-roll.png" alt="vip-roll">
-                        <div class="text-product-box">
-                            <h3>VIP рол</h3>
-                            <p class="product-description"><span class="weight">335г</span> - Тунець, креветка, лосось, окунь, масаго, сир "Філа", авокадо, огірок, цибуля зелена, соус "Спайс"</p>
-                            <div class="wrapper">
-                                <button class="product-box-btn">Купити</button>
-                                <p class="product-box-price"><span class="product-box-price-big">430</span><span class="currency">грн</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <div class="product-box-rolls">
-                    <img class="img-product-box" src="/Диплом/images/rolls-photo/vip-roll-popkorn.png" alt="vip-roll-popkorn">
-                    <div class="text-product-box">
-                        <h3>VIP рол з "Ебі" попкорном</h3>
-                        <p class="product-description"><span class="weight">340г</span> - Тунець, креветка, лосось, окунь, масаго, сир "Філа", соус "Манговий", огірок, авокадо, цибуля зелена, соус "Спайс"</p>
-                        <div class="wrapper">
-                            <button class="product-box-btn">Купити</button>
-                            <p class="product-box-price"><span class="product-box-price-big">430</span><span class="currency">грн</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-box-rolls">
-                    <img class="img-product-box" src="/Диплом/images/rolls-photo/avokado-yasai-roll.png" alt="avokado-yasai-roll">
-                    <div class="text-product-box">
-                        <h3>Авокадо-Ясай рол</h3>
-                        <p class="product-description"><span class="weight">320г</span> - Авокадо, сир "Філа", огірок, томати, морква парова, соус "Унагі", кунжут</p>
-                        <div class="wrapper">
-                            <button class="product-box-btn">Купити</button>
-                            <p class="product-box-price"><span class="product-box-price-big">270</span><span class="currency">грн</span></p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
     <?php require 'footer.php'; ?>
 
+<!-- // Перенаправлення користувача на сторінку з деталями продукту -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
   const productBoxes = document.querySelectorAll(".link-product-box");
@@ -246,42 +199,24 @@
     box.addEventListener("click", function () {
       const productId = this.getAttribute("data-product-id");
       
-      // Отримати поточну категорію з URL
+      // Отримання поточної категорії з URL
       const urlParams = new URLSearchParams(window.location.search);
       const currentCategory = urlParams.get('category');
       
-      // Отримати обраний фільтр з URL
+      // Отримання обраного фільтру з URL
       const currentFilter = urlParams.get('filter');
 
-      // Побудувати новий URL з параметрами категорії, фільтра та ідентифікатора продукту
+      // Новий URL з параметрами категорії, фільтра та ідентифікатора продукту
       const url = `products.php?category=${currentCategory}&filter=${currentFilter}&product_id=${productId}`;
       
-      // Перенаправити користувача на products.php з параметрами
+      // Перенаправлення користувача на products.php з параметрами
       window.location.href = url;
     });
   });
 });
 </script>
-<!-- <script>
-    // Отримати значення з PHP та використати його у JavaScript
-    const category = "<?php //echo $_GET['category']; ?>";
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".button-design");
-
-        buttons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                const filter = this.id; // Отримати id кнопки, яка була клікнута
-                filterProducts(filter, category); // Викликати функцію фільтрації з параметрами фільтра і категорії
-            });
-        });
-    });
-
-    function filterProducts(filter, category) {
-        // Відправити запит на сервер з параметрами фільтра та категорії
-        window.location.href = `category.php?filter=${filter}&category=${category}`;
-    }
-</script> -->
+<!-- // Фільтрування продуктів на сторінці -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".button-design");
@@ -298,8 +233,8 @@
     // Обробник кліків на кнопках фільтрів
     buttons.forEach(function (button) {
         button.addEventListener("click", function () {
-            const filter = this.id; // Отримати id кнопки, яка була клікнута
-            filterProducts(filter); // Викликати функцію фільтрації з параметром фільтра
+            const filter = this.id; // id кнопки, яка була клікнута
+            filterProducts(filter); // Функція фільтрації з параметром фільтра
         });
     });
 });
@@ -309,5 +244,40 @@ function filterProducts(filter) {
     window.location.href = `category.php?filter=${filter}&category=<?php echo $_GET['category']; ?>`;
 }
 </script>
+
+<!-- // Додавання товарів у кошик -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const addToCartButtons = document.querySelectorAll('.product-box-btn');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productID = this.getAttribute('data-product-id');
+                const productTitle = this.getAttribute('data-product-title');
+                const productImg = this.getAttribute('data-product-img');
+                const productPrice = parseInt(this.getAttribute('data-product-price'));
+
+                const cartItem = {
+                    id: productID,
+                    title: productTitle,
+                    img: productImg,
+                    price: productPrice
+                };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                const itemExists = cart.some(item => item.id === productID);
+
+                if (itemExists) {
+                    alert('Цей товар вже є в корзині!');
+                } else {
+                    cart.push(cartItem);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    alert('Товар додано до корзини!');
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>

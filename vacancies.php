@@ -32,7 +32,7 @@
                         <li>Посудомийниця</li>
                         <li>Кур'єр</li>
                     </ul>
-                    <p class="email">З/без досвіду роботи. Запитання та резюме відправляти на e-mail: <a href="mailto:tomaxa.kiev@gmail.com">tomaxa.kiev@gmail.com</a>. Заробітня платня - за результатами співбесіди.</p>
+                    <p class="email">З/без досвіду роботи. Запитання та резюме відправляти на e-mail: <a href="mailto:tomaxa.kiev@gmail.com">tomaxa.kiev@gmail.com</a>. Заробітна плата - за результатами співбесіди.</p>
                 </div>
             </section>
         </div>

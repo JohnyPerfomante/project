@@ -5,16 +5,14 @@
 <?php 
 
     $product_id = $_GET['product_id'];
-    // Конфігурація для підключення до бази даних
+
     $servername = "localhost";
     $username = "root";
     $password = "root";
     $dbname = "Tomaxa";
 
-    // Підключення до бази даних
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Перевірка підключення
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -29,7 +27,7 @@
 
     // Розділення рядка на окремі значення ідентифікаторів
     $ingredient_ids = explode("#", $ingredient_ids_string);
-    // Підготовка запиту для вибірки інгредієнтів
+    // Запит для вибірки інгредієнтів
     $ingredient_sql = "SELECT * FROM ingredients WHERE id_ingredients IN (" . implode(",", $ingredient_ids) . ")";
     $ingredient_result = $conn->query($ingredient_sql);
 
@@ -37,14 +35,13 @@
     echo '<div class="container">';
     echo '<div class="product-page-row">';
     echo '<div class="video-box">';
-    // Перевірка розширення файлу (якщо він має розширення .mp4, вважатимемо його відео)
+    // Перевірка розширення файлу
     $file_extension = pathinfo($row["video_path"], PATHINFO_EXTENSION);
     if ($file_extension === 'mp4') {
         echo '<video class="video-product" autoplay muted loop>';
         echo '<source src="' . $row["video_path"] . '" type="video/mp4">';
         echo '</video>';
     } else {
-        // Якщо це не відео, вважатимемо, що це фото і обгорнемо його в тег img
         echo '<img src="' . $row["video_path"] . '" alt="' . $row["title"] . '" class="video-product">';
     }
     echo '</div>';
@@ -52,7 +49,7 @@
     echo '<h2>' . $row["title"] . '</h2>';
     echo '<p>' . $row["weight"] . 'г</p>';
     echo '<div class="wrapper">';
-    echo '<button class="content-product-btn">Купити</button>';
+    echo '<button class="content-product-btn" data-product-id="' . $row["product_id"] . '" data-product-title="' . $row["title"] . '" data-product-img="' . $row["img_path"] . '" data-product-price="' . intval($row["price"]) . '">Купити</button>';
     echo '<p class="content-product-price"><span class="content-product-price-big">' . intval($row["price"]) . '</span><span class="currency">грн</span></p>';
     echo '</div>';
     echo '<div class="ingredients-title">Склад:</div>';
@@ -94,15 +91,12 @@
     echo '<div class="swiper myswiper" style="height: 550px;">';
     echo '<div class="swiper-wrapper">';
 
-    // Вибрати випадково 10 ролів
+    // Вибір випадкових 10 ролів
     $sql = "SELECT * FROM Products WHERE category = '$category' ORDER BY RAND() LIMIT 10";
     $result = $conn->query($sql);
 
-    // Виведення результатів запиту
     if ($result->num_rows > 0) {
-        // Вивести дані кожного рядка
         while($row = $result->fetch_assoc()) {
-            // Ваш код для виведення ролів
             echo '<div class="swiper-slide">';
             echo '<a class="link-product-box-liked" data-product-id="' . $row["product_id"] . '">';
             echo '<div class="product-box-products">';
@@ -111,7 +105,6 @@
             echo '<h3>' . $row["title"] . '</h3>';
             echo '<p class="product-description"><span class="weight">' . $row["weight"] . 'г</span> - ';
 
-            // Отримання інгредієнтів для поточного продукту
             $ingredients_ids = explode("#", $row["ingredients"]);
             $ingredient_names = array();
 
@@ -125,7 +118,6 @@
                 }
             }
 
-            // Виведення назв інгредієнтів, розділених комами
             echo implode(", ", $ingredient_names);
 
             echo '</p>';
@@ -145,7 +137,6 @@
     echo '</div>'; // swiper-wrapper
     echo '</div>'; // swiper
     echo '</div>'; // container
-    // echo '</div>'; // row
     echo '</section>'; // product-carousel
     echo '</section>'; // main-liked
 
@@ -155,3 +146,37 @@
 
 <?php require 'footer.php'; ?>
 <script src="js/main.js"></script>
+
+<!-- // Фунція додавання товарів до кошика -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addToCartButtons = document.querySelectorAll('.content-product-btn');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productID = this.getAttribute('data-product-id');
+                const productTitle = this.getAttribute('data-product-title');
+                const productImg = this.getAttribute('data-product-img');
+                const productPrice = parseInt(this.getAttribute('data-product-price'));
+
+                const cartItem = {
+                    id: productID,
+                    title: productTitle,
+                    img: productImg,
+                    price: productPrice
+                };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const itemExists = cart.some(item => item.id === productID);
+
+                if (itemExists) {
+                    alert('Цей товар вже є в корзині!');
+                } else {
+                    cart.push(cartItem);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    alert('Товар додано до корзини!');
+                }
+            });
+        });
+    });
+</script>

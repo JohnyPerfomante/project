@@ -19,24 +19,15 @@
         <div class="container">
         <h1 class="title">Ресторани TOMAXA</h1>
             <div class="restaurant-list">
-                <!-- <div class="restaurant-item">
-                    <img src="/Диплом/images/restaurants/Mechnikova/title.png" alt="Restaurant 1" class="restaurant-image">
-                    <div class="restaurant-info">
-                        <h2><span class="highlight">TOMAXA</span> в м. Ірпінь, вул. Мечникова 108А</h2>
-                        <p>м. Ірпінь</p>
-                        <a href="#" class="restaurant-link">Про ресторан</a>
-                    </div>
-                </div> -->
+
                 <?php
                     $servername = "localhost";
                     $username = "root";
                     $password = "root";
                     $dbname = "Tomaxa";
                     
-                    // Створення підключення
                     $conn = new mysqli($servername, $username, $password, $dbname);
                     
-                    // Перевірка підключення
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }

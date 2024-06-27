@@ -16,49 +16,54 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var currentIndex = 1;
+  var swipers = document.querySelectorAll(".row");
 
-  var leftArrow = document.querySelector(".slider-swiper-left");
-  var rightArrow = document.querySelector(".slider-swiper-right");
-  var indexDisplay = document.querySelector(".change-number-swiper");
-  var circleR = document.getElementById("circleR");
-  var circleL = document.getElementById("circleL");
+  swipers.forEach(function (swiper, index) {
+    var currentIndex = 1;
 
-  leftArrow.addEventListener("click", function () {
-    if (currentIndex > 1) {
-      currentIndex--;
-      indexDisplay.textContent = currentIndex;
-      if (currentIndex === 1) {
-        circleL.classList.remove("active");
-      }
-      if (currentIndex > 1 && currentIndex < 8) {
-        circleL.classList.add("active");
-        circleR.classList.add("active");
-      }
-      if (currentIndex === 8) {
-        circleR.classList.remove("active");
-      }
-    }
-  });
+    var leftArrow = swiper.querySelector(".slider-swiper-left");
+    var rightArrow = swiper.querySelector(".slider-swiper-right");
+    var indexDisplay = swiper.querySelector(".change-number-swiper");
+    var circleR = swiper.querySelector(`#circleR${index + 1}`);
+    var circleL = swiper.querySelector(`#circleL${index + 1}`);
 
-  rightArrow.addEventListener("click", function () {
-    if (currentIndex < 8) {
-      currentIndex++;
-      indexDisplay.textContent = currentIndex;
-      if (currentIndex == 1) {
-        circleL.classList.remove("active");
+    leftArrow.addEventListener("click", function () {
+      if (currentIndex > 1) {
+        currentIndex--;
+        indexDisplay.textContent = currentIndex;
+        if (currentIndex === 1) {
+          circleL.classList.remove("active");
+        }
+        if (currentIndex > 1 && currentIndex < 8) {
+          circleL.classList.add("active");
+          circleR.classList.add("active");
+        }
+        if (currentIndex === 8) {
+          circleR.classList.remove("active");
+        }
       }
-      if (currentIndex > 1 && currentIndex < 8) {
-        circleR.classList.add("active");
-        circleL.classList.add("active");
+    });
+
+    rightArrow.addEventListener("click", function () {
+      if (currentIndex < 8) {
+        currentIndex++;
+        indexDisplay.textContent = currentIndex;
+        if (currentIndex === 1) {
+          circleL.classList.remove("active");
+        }
+        if (currentIndex > 1 && currentIndex < 8) {
+          circleR.classList.add("active");
+          circleL.classList.add("active");
+        }
+        if (currentIndex === 8) {
+          circleR.classList.remove("active");
+        }
       }
-      if (currentIndex === 8) {
-        circleR.classList.remove("active");
-      }
-    }
+    });
   });
 });
 
+//Перенаправлення на products.php
 document.addEventListener("DOMContentLoaded", function () {
   const productBoxes = document.querySelectorAll(".link-product-box-liked");
 
@@ -67,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const productId = this.getAttribute("data-product-id");
 
       const url = `products.php?product_id=${productId}`;
-      // Перенаправити користувача на product.php з параметрами
       window.location.href = url;
     });
   });
